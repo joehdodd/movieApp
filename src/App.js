@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { HashRouter as Router, Route, Link} from 'react-router-dom';
 import './App.css';
 
 class App extends Component {
@@ -42,7 +42,7 @@ class App extends Component {
         </div>
         <Router>
           <div>
-            <Route path="/" exact render={() => (
+          <Route exact path="/"  render={() => (
               <MovieIndex addMovie={this.addMovie} movies={this.state.movies}/>
             )}/>
           <Route path={`/movie/`} render={() => (
@@ -106,17 +106,6 @@ class MovieList extends Component {
 }
 
 class MovieListItem extends Component {
-  constructor(props) {
-    super(props);
-    this.toggleClass = this.toggleClass.bind(this);
-    this.state = {
-      active: false
-    };
-  }
-  toggleClass() {
-    const currentState = this.state.active;
-    this.setState({ active: !currentState });
-  }
   render() {
     const { details } = this.props;
     let id = this.props.id;
@@ -127,12 +116,7 @@ class MovieListItem extends Component {
               <div className="photo">
                 <img src={details.image} alt={details.title}/>
                 <div className="photo-overlay">
-                  <h4 className="detail-heading">Title</h4>
-                  <p className="detail-text">{details.title}</p>
-                  <h4 className="detail-heading">Year</h4>
-                  <p className="detail-text">{details.year}</p>
-                  <h4 className="detail-heading">Description</h4>
-                  <p className="detail-text">{details.desc}</p>
+                  <h4 className="detail-heading">Details</h4>
                 </div>
               </div>
             </Link>
@@ -147,17 +131,23 @@ class MovieDetails extends Component {
     let movie = this.props.movies;
     let id = this.props.id;
     return (
-      <div>
-        <div>
-          <p>{id}</p>
-          <p>{movie[0].title}</p>
-          <p>{movie[0].desc}</p>
+      <div className="container">
+        <div className="flex">
+          <img src={movie[0].image} alt={movie[0].title}/>
         </div>
-        <Router>
-          <Link to=''>
-            <button type="submit">Home</button>
-          </Link>
-        </Router>
+        <div className="flex">
+          <h4 className="detail-heading">Title</h4>
+          <p className="detail-text">{movie[0].title}</p>
+          <h4 className="detail-heading">Year</h4>
+          <p className="detail-text">{movie[0].year}</p>
+          <h4 className="detail-heading">Description</h4>
+          <p className="detail-text">{movie[0].desc}</p>
+          <Router>
+            <Link to='/'>
+              <button className="btn-back" type="submit">Home</button>
+            </Link>
+          </Router>
+        </div>
       </div>
     )
   }

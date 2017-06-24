@@ -91,6 +91,11 @@ button:hover {
   color: #fff;
 }
 
+.btn-back {
+  height: 45px;
+  width: 65px;
+}
+
 .photo-overlay {
   font-size: 1.5rem;
 }
@@ -119,6 +124,9 @@ button:hover {
   left: 0;
   padding: 10px;
   background: rgba(0,0,0, .75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .photo-overlay {
