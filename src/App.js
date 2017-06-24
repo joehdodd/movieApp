@@ -33,11 +33,6 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper">
-        <div className="container">
-          <div>
-            <h3 className="heading">Favorite Movies</h3>
-          </div>
-        </div>
         <Router>
           <div>
           <Route exact path="/"  render={() => (
@@ -57,6 +52,11 @@ class MovieIndex extends Component {
   render() {
     return (
       <div>
+        <div className="container">
+          <div>
+            <h3 className="heading">Top Movies</h3>
+          </div>
+        </div>
         <AddMovie addMovie={this.props.addMovie}/>
         <MovieList movies={this.props.movies}/>
       </div>
@@ -114,7 +114,7 @@ class MovieListItem extends Component {
               <div className="photo">
                 <img src={details.image} alt={details.title}/>
                 <div className="photo-overlay">
-                  <h4 className="detail-heading">Details</h4>
+                  <h4 className="detail-heading_overlay">Details</h4>
                 </div>
               </div>
             </Link>
@@ -125,27 +125,32 @@ class MovieListItem extends Component {
 }
 
 class MovieDetails extends Component {
-  render(props) {
+  render() {
     let id = this.props.match.params.movieId;
     console.log({id})
     let movie = this.props.movies;
     return (
-      <div className="container">
-        <div className="flex">
-          <img src={movie[id].image} alt={movie[id].title}/>
+      <div>
+        <div className="container">
+          <h3 className="heading">Movie Details</h3>
         </div>
-        <div className="flex">
-          <h4 className="detail-heading">Title</h4>
-          <p className="detail-text">{movie[id].title}</p>
-          <h4 className="detail-heading">Year</h4>
-          <p className="detail-text">{movie[id].year}</p>
-          <h4 className="detail-heading">Description</h4>
-          <p className="detail-text">{movie[id].desc}</p>
-          <Router>
-            <Link to='/'>
-              <button className="btn-back" type="submit">Home</button>
-            </Link>
-          </Router>
+        <div className="container">
+          <div className="flex">
+            <img src={movie[id].image} alt={movie[id].title}/>
+          </div>
+          <div className="flex">
+            <h4 className="detail-heading">Title</h4>
+            <p className="detail-text">{movie[id].title}</p>
+            <h4 className="detail-heading">Year</h4>
+            <p className="detail-text">{movie[id].year}</p>
+            <h4 className="detail-heading">Description</h4>
+            <p className="detail-text">{movie[id].desc}</p>
+            <Router>
+              <Link to='/'>
+                <button className="btn-back" type="submit">Home</button>
+              </Link>
+            </Router>
+          </div>
         </div>
       </div>
     )

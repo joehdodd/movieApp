@@ -71,6 +71,7 @@ textarea {
   height: 85px;
   border: none;
   background-color: #f2f2f2;
+  resize: none;
 }
 
 input::placeholder,
@@ -140,12 +141,23 @@ button:hover {
 
 /* Overlay Text Styles */
 
-.detail-heading {
+.detail-heading,
+.detail-heading_overlay {
   font-weight: bolder;
   font-style: italic;
   color: #3FBFAD;
   margin: 0;
 }
+
+.detail-heading_overlay {
+  font-size: 2rem;
+  transform: rotate(-10deg)
+}
+
+.detail-heading_overlay:hover {
+  color: #fff;
+}
+
 
 @media screen and (min-width: 768px) {
 
@@ -164,7 +176,7 @@ button:hover {
   }
 
   .detail-heading {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   .detail-text {
