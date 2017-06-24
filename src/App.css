@@ -1,0 +1,184 @@
+/*=====================
+        GLOBALS
+=====================*/
+
+img {
+  max-width: 100%;
+}
+
+body {
+  background: #fff;
+}
+
+/*=====================
+        LAYOUT
+=====================*/
+
+.wrapper {
+  background: #fff;
+  min-height: 400px;
+}
+
+/* Flexbox */
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.flex {
+  flex: 1 0 200px;
+  margin: 10px;
+  align-self: flex-start;
+}
+
+/*=====================
+    COMPONENT STYLES
+=====================*/
+
+.heading {
+  text-align: center;
+  font-weight: lighter;
+  font-size: 1.5em;
+}
+
+/* Form */
+
+.form {
+  text-align: center;
+  margin: 10px;
+}
+
+input[type="text"],
+textarea,
+button {
+  width: 100%;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  outline: none;
+}
+
+input[type="text"] {
+  height: 55px;
+  border: none;
+  background-color: #f2f2f2;
+}
+
+textarea {
+  height: 85px;
+  border: none;
+  background-color: #f2f2f2;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #90949C;
+}
+
+button {
+  height: 55px;
+  border: 2px solid #3FBFAD;
+  background-color: transparent;
+  color: #3FBFAD;
+  border-radius: 2px;
+}
+
+button:hover {
+  background-color: #3FBFAD;
+  color: #fff;
+}
+
+.photo-overlay {
+  font-size: 1.5rem;
+}
+
+/* Transitions & Animations */
+
+.photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.photo img {
+  transition: transform .5s;
+}
+
+.photo:hover img {
+  transform: scale(1.2);
+}
+
+.photo-overlay {
+  color: #fff;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  background: rgba(0,0,0, .75);
+}
+
+.photo-overlay {
+	opacity: 0;
+	transition: opacity .5s;
+}
+
+.photo-overlay:hover {
+	opacity: 1;
+}
+
+/* Overlay Text Styles */
+
+.detail-heading {
+  font-weight: bolder;
+  font-style: italic;
+  color: #3FBFAD;
+  margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+
+  button {
+    width: 50%;
+  }
+
+  input[type="text"],
+  textarea {
+    width: 50%;
+    font-size: 1rem;
+  }
+
+  .flex {
+    max-width: 33.33333%;
+  }
+
+  .detail-heading {
+    font-size: 1.25rem;
+  }
+
+  .detail-text {
+    font-size: .85rem;
+    font-weight: lighter;
+  }
+
+}
+
+@media screen and (min-width: 960px) {
+
+  body {
+    background: #e9ebee;
+  }
+
+  .wrapper {
+    max-width: 768px;
+    margin: 20px auto;
+    border-radius: 2px;
+    box-shadow: 0px 0px 1px 0px #bfbfbf;
+  }
+
+}
+
+/* className={this.state.active ? "red" : null} onClick={this.toggleClass} */
