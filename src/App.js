@@ -7,9 +7,7 @@ class App extends Component {
     super();
     this.addMovie = this.addMovie.bind(this);
     this.state = {
-      movies : [
-
-      ]
+      movies : []
     };
   }
 
@@ -45,8 +43,8 @@ class App extends Component {
           <Route exact path="/"  render={() => (
               <MovieIndex addMovie={this.addMovie} movies={this.state.movies}/>
             )}/>
-          <Route path={`/movie/`} render={() => (
-              <MovieDetails movies={ this.state.movies }/>
+          <Route path={`/movie/:movieId`} render={ ({...props}) => (
+              <MovieDetails {...props} movies={ this.state.movies }/>
             )}/>
           </div>
         </Router>
@@ -127,21 +125,22 @@ class MovieListItem extends Component {
 }
 
 class MovieDetails extends Component {
-  render() {
+  render(props) {
+    let id = this.props.match.params.movieId;
+    console.log({id})
     let movie = this.props.movies;
-    let id = this.props.id;
     return (
       <div className="container">
         <div className="flex">
-          <img src={movie[0].image} alt={movie[0].title}/>
+          <img src={movie[id].image} alt={movie[id].title}/>
         </div>
         <div className="flex">
           <h4 className="detail-heading">Title</h4>
-          <p className="detail-text">{movie[0].title}</p>
+          <p className="detail-text">{movie[id].title}</p>
           <h4 className="detail-heading">Year</h4>
-          <p className="detail-text">{movie[0].year}</p>
+          <p className="detail-text">{movie[id].year}</p>
           <h4 className="detail-heading">Description</h4>
-          <p className="detail-text">{movie[0].desc}</p>
+          <p className="detail-text">{movie[id].desc}</p>
           <Router>
             <Link to='/'>
               <button className="btn-back" type="submit">Home</button>
