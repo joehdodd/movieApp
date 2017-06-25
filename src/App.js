@@ -1,22 +1,21 @@
-import React, { Component } from 'react';
-import { HashRouter as Router, Route, Link} from 'react-router-dom';
+import React, {Component} from 'react';
+import {HashRouter as Router, Route, Link} from 'react-router-dom';
 import './App.css';
 
 class App extends Component {
   constructor() {
     super();
     this.addMovie = this.addMovie.bind(this);
+    this.removeMovie = this.removeMovie.bind(this);
     this.state = {
-      movies : []
+      movies: []
     };
   }
 
   componentWillMount() {
     const localStorageRef = localStorage.getItem(`movie`);
-    if(localStorageRef) {
-      this.setState({
-        movies: JSON.parse(localStorageRef)
-      });
+    if (localStorageRef) {
+      this.setState({movies: JSON.parse(localStorageRef)});
     }
   }
 
@@ -27,7 +26,13 @@ class App extends Component {
   addMovie(movie) {
     let movies = this.state.movies;
     movies.push(movie);
-    this.setState({ movies });
+    this.setState({movies});
+  }
+
+  removeMovie(movie) {
+    let movies = this.state.movies;
+    movies.pop(movie);
+    this.setState({movies});
   }
 
   render() {
@@ -35,12 +40,10 @@ class App extends Component {
       <div className="wrapper">
         <Router>
           <div>
-          <Route exact path="/"  render={() => (
-              <MovieIndex addMovie={this.addMovie} movies={this.state.movies}/>
-            )}/>
-          <Route path={`/movie/:movieId`} render={ ({...props}) => (
-              <MovieDetails {...props} movies={ this.state.movies }/>
-            )}/>
+            <Route exact path="/" render={() => (
+                <MovieIndex addMovie={this.addMovie} removeMovie={this.removeMovie} movies={this.state.movies}/>)}/>
+            <Route path={`/movie/:movieId`} render={({...props}) => (
+                <MovieDetails {...props} movies={this.state.movies}/>)}/>
           </div>
         </Router>
       </div>
@@ -58,7 +61,7 @@ class MovieIndex extends Component {
           </div>
         </div>
         <AddMovie addMovie={this.props.addMovie}/>
-        <MovieList movies={this.props.movies}/>
+        <MovieList movies={this.props.movies} removeMovie={this.props.removeMovie}/>
       </div>
     )
   }
@@ -68,10 +71,10 @@ class AddMovie extends Component {
   addMovie(event) {
     event.preventDefault();
     const movie = {
-      title : this.title.value,
-      year  : this.year.value,
-      image : this.image.value,
-      desc  : this.desc.value
+      title: this.title.value,
+      year: this.year.value,
+      image: this.image.value,
+      desc: this.desc.value
     };
     this.props.addMovie(movie);
     this.movieForm.reset();
@@ -96,8 +99,8 @@ class AddMovie extends Component {
 class MovieList extends Component {
   render() {
     return (
-      <div className="container">
-        { this.props.movies.map( (movie, id) => <MovieListItem key={id} id={id} details={ movie }/> )}
+      <div className="container-row">
+        {this.props.movies.map((movie, id) => <MovieListItem key={id} id={id} details={movie} removeMovie={this.props.removeMovie}/>)}
       </div>
     );
   }
@@ -105,20 +108,21 @@ class MovieList extends Component {
 
 class MovieListItem extends Component {
   render() {
-    const { details } = this.props;
+    const {details} = this.props;
     let id = this.props.id;
     return (
       <Router>
-          <div className="flex">
-            <Link to={`movie/${id}`}>
-              <div className="photo">
-                <img src={details.image} alt={details.title}/>
-                <div className="photo-overlay">
+        <div className="flex">
+            <div className="photo">
+              <img src={details.image} alt={details.title}/>
+              <div className="photo-overlay">
+                <Link to={`movie/${id}`}>
                   <h4 className="detail-heading_overlay">Details</h4>
-                </div>
+                </Link>
+                <h4 className="remove" onClick={() => this.props.removeMovie(details.id)}>Remove</h4>
               </div>
-            </Link>
-          </div>
+            </div>
+        </div>
       </Router>
     )
   }
@@ -127,7 +131,6 @@ class MovieListItem extends Component {
 class MovieDetails extends Component {
   render() {
     let id = this.props.match.params.movieId;
-    console.log({id})
     let movie = this.props.movies;
     return (
       <div>
