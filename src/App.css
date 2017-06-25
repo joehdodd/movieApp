@@ -205,6 +205,10 @@ button:hover {
     min-height: 425px;
   }
 
+  .flex {
+    max-width: 50%;
+  }
+
   .detail-heading {
     font-size: 1.5rem;
   }
