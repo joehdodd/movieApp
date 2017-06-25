@@ -13,6 +13,12 @@ a {
   text-decoration: none;
 }
 
+hr {
+  max-width: 65%;
+  color: #3fbfad;
+  border: 1px dotted;
+}
+
 /*=====================
         LAYOUT
 =====================*/
@@ -184,8 +190,9 @@ button:hover {
 .add-movie {
   text-align: center;
   transform: rotate(-10deg);
-  font-size: 1.25rem;
+  font-size: 2rem;
   color: #3fbfad;
+  margin: 20%;
 }
 
 
@@ -220,7 +227,6 @@ button:hover {
 
   .add-movie {
     text-align: center;
-    margin: 20%;
     transform: rotate(-10deg);
     font-size: 2rem;
   }

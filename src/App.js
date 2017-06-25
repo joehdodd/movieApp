@@ -56,10 +56,12 @@ class MovieIndex extends Component {
       <div className="container-row">
           <div className="wrapper">
             <h3 className="heading">Add A Movie</h3>
+            <hr></hr>
             <AddMovie addMovie={this.props.addMovie}/>
           </div>
           <div className="wrapper">
             <h3 className="heading">Your Movies</h3>
+            <hr></hr>
             {areMovies.length === 0 ? (
               <p className="add-movie">Add a movie!</p>
             ) : (
@@ -142,6 +144,7 @@ class MovieDetails extends Component {
           <div className="container">
             <h3 className="heading">Movie Details</h3>
           </div>
+          <hr></hr>
           <div className="container">
             <div className="flex">
               <img src={movie[id].image} alt={movie[id].title}/>
