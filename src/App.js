@@ -53,7 +53,7 @@ class MovieIndex extends Component {
   render() {
     const areMovies = this.props.movies;
     return (
-      <div className="container-row">
+      <div className="container">
           <div className="wrapper">
             <h3 className="heading">Add A Movie</h3>
             <hr></hr>
@@ -105,7 +105,7 @@ class AddMovie extends Component {
 class MovieList extends Component {
   render() {
     return (
-      <div className="container-row">
+      <div className="container">
         {this.props.movies.map((movie, id) => <MovieListItem key={id} id={id} details={movie} removeMovie={this.props.removeMovie}/>)}
       </div>
     );

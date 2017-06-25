@@ -1,6 +1,7 @@
 /*=====================
         GLOBALS
 =====================*/
+
 body {
   background: #fff;
 }
@@ -35,12 +36,6 @@ hr {
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 10px;
-}
-
-.container-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .flex {
@@ -189,10 +184,11 @@ button:hover {
 
 .add-movie {
   text-align: center;
-  transform: rotate(-10deg);
+  margin: 20%;
   font-size: 2rem;
   color: #3fbfad;
-  margin: 20%;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  transform: rotate(-10deg);
 }
 
 
@@ -206,10 +202,6 @@ button:hover {
   textarea {
     width: 50%;
     font-size: 1rem;
-  }
-
-  .wrapper {
-    min-height: 425px;
   }
 
   .flex {
@@ -239,10 +231,6 @@ button:hover {
     background: #e9ebee;
   }
 
-  .container-row {
-    justify-content: space-around;
-  }
-
   .wrapper {
     flex: 1 0;
     align-self: baseline;
@@ -253,5 +241,3 @@ button:hover {
   }
 
 }
-
-/* className={this.state.active ? "red" : null} onClick={this.toggleClass} */
