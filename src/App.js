@@ -37,31 +37,35 @@ class App extends Component {
 
   render() {
     return (
-      <div className="wrapper">
-        <Router>
-          <div>
-            <Route exact path="/" render={() => (
-                <MovieIndex addMovie={this.addMovie} removeMovie={this.removeMovie} movies={this.state.movies}/>)}/>
-            <Route path={`/movie/:movieId`} render={({...props}) => (
-                <MovieDetails {...props} movies={this.state.movies}/>)}/>
-          </div>
-        </Router>
-      </div>
+      <Router>
+        <div>
+          <Route exact path="/" render={() => (
+              <MovieIndex addMovie={this.addMovie} removeMovie={this.removeMovie} movies={this.state.movies}/>)}/>
+          <Route path={`/movie/:movieId`} render={({...props}) => (
+              <MovieDetails {...props} movies={this.state.movies}/>)}/>
+        </div>
+      </Router>
     )
   }
 }
 
 class MovieIndex extends Component {
   render() {
+    const areMovies = this.props.movies;
     return (
-      <div>
-        <div className="container">
-          <div>
-            <h3 className="heading">Top Movies</h3>
+      <div className="container-row">
+          <div className="wrapper">
+            <h3 className="heading">Add A Movie</h3>
+            <AddMovie addMovie={this.props.addMovie}/>
           </div>
-        </div>
-        <AddMovie addMovie={this.props.addMovie}/>
-        <MovieList movies={this.props.movies} removeMovie={this.props.removeMovie}/>
+          <div className="wrapper">
+            <h3 className="heading">Your Movies</h3>
+            {areMovies.length === 0 ? (
+              <p className="add-movie">Add a movie!</p>
+            ) : (
+             <MovieList movies={this.props.movies} removeMovie={this.props.removeMovie}/>
+            )}
+          </div>
       </div>
     )
   }
@@ -133,26 +137,28 @@ class MovieDetails extends Component {
     let id = this.props.match.params.movieId;
     let movie = this.props.movies;
     return (
-      <div>
-        <div className="container">
-          <h3 className="heading">Movie Details</h3>
-        </div>
-        <div className="container">
-          <div className="flex">
-            <img src={movie[id].image} alt={movie[id].title}/>
+      <div className="container">
+        <div className="wrapper">
+          <div className="container">
+            <h3 className="heading">Movie Details</h3>
           </div>
-          <div className="flex">
-            <h4 className="detail-heading">Title</h4>
-            <p className="detail-text">{movie[id].title}</p>
-            <h4 className="detail-heading">Year</h4>
-            <p className="detail-text">{movie[id].year}</p>
-            <h4 className="detail-heading">Description</h4>
-            <p className="detail-text">{movie[id].desc}</p>
-            <Router>
-              <Link to='/'>
-                <button className="btn-back" type="submit">Home</button>
-              </Link>
-            </Router>
+          <div className="container">
+            <div className="flex">
+              <img src={movie[id].image} alt={movie[id].title}/>
+            </div>
+            <div className="flex">
+              <h4 className="detail-heading">Title</h4>
+              <p className="detail-text">{movie[id].title}</p>
+              <h4 className="detail-heading">Year</h4>
+              <p className="detail-text">{movie[id].year}</p>
+              <h4 className="detail-heading">Description</h4>
+              <p className="detail-text">{movie[id].desc}</p>
+              <Router>
+                <Link to='/'>
+                  <button className="btn-back" type="submit">Home</button>
+                </Link>
+              </Router>
+            </div>
           </div>
         </div>
       </div>
