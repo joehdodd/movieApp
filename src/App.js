@@ -119,7 +119,7 @@ class MovieListItem extends Component {
                 <Link to={`movie/${id}`}>
                   <h4 className="detail-heading_overlay">Details</h4>
                 </Link>
-                <h4 className="remove" onClick={() => this.props.removeMovie(details.id)}>Remove</h4>
+                <h4 className="remove" onClick={() => this.props.removeMovie(id)}>Remove</h4>
               </div>
             </div>
         </div>
