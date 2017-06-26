@@ -31,7 +31,7 @@ class App extends Component {
 
   removeMovie(movie) {
     let movies = this.state.movies;
-    movies.pop(movie);
+    delete movies[movie];
     this.setState({movies});
   }
 
