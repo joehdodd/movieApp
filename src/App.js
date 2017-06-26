@@ -29,9 +29,9 @@ class App extends Component {
     this.setState({movies});
   }
 
-  removeMovie(movie) {
+  removeMovie(id) {
     let movies = this.state.movies;
-    delete movies[movie];
+    movies.splice(id);
     this.setState({movies});
   }
 
