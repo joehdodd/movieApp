@@ -93,7 +93,7 @@ class AddMovie extends Component {
             <input ref={(input) => this.title = input} className="Input" type="text" placeholder="Title" required/>
             <input ref={(input) => this.year = input} className="Input" type="text" placeholder="Year" required/>
             <textarea ref={(input) => this.desc = input} className="Input" type="text" placeholder="Description" required></textarea>
-            <input ref={(input) => this.image = input} className="Input" type="text" placeholder="Poster URL" required/>
+            <input ref={(input) => this.image = input} className="Input" type="text" placeholder="Poster Image URL" required/>
             <button type="submit">Add</button>
           </form>
         </div>

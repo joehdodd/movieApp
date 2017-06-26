@@ -187,7 +187,7 @@ button:hover {
   margin: 20%;
   font-size: 2rem;
   color: #3fbfad;
-  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.75);
   transform: rotate(-10deg);
 }
 
