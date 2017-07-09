@@ -31,7 +31,7 @@ class App extends Component {
 
   removeMovie(id) {
     let movies = this.state.movies;
-    movies.splice(id);
+    movies.splice(id, 1);
     this.setState({movies});
   }
 
